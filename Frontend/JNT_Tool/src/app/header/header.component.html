@@ -1,0 +1,87 @@
+<!-- JNT TOOLS Navbar -->
+<nav class="navbar fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" [routerLink]="['/mainpage']" style="font-family: brush script">
+      <div class="border">
+        <img src="../../assets/cropped-joenish-logo-179x42.png" alt="">
+      </div>
+    </a>
+    <div class="navbar-text text-white">Welcome, {{ loggedFirstName }} ({{loggedInUserName}})</div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar"
+      aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Main Menu</h5>
+        <button type="button" class="btn-close custom-btn-close" data-bs-dismiss="offcanvas"
+          aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <!-- Projects Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="projectsDropdown" role="button"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Projects
+            </a>
+            <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="reportsDropdown">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/dashboard']">Create/Update</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Reports Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="reportsDropdown" role="button"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Reports
+            </a>
+            <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="reportsDropdown">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/projectReport']">Project Report</a>
+              </li>
+              <li class="nav-item">
+                <a class="dropdown-item" [routerLink]="['/salary-report']">Salary Report</a>
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/attendanceReport']"
+                  >Attendance Report</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" [routerLink]="['/leaveStatus']">
+              Leave Management
+            </a>
+          </li>
+          <!--coupons -->
+          <li class="nav-item">
+            <a class="nav-link" style="color: white; font-family: 'Arial', sans-serif;" routerLink="/coupons">
+              Coupons
+            </a>
+          </li>
+          <!-- Manage Tasks Dropdown -->
+          <li class="nav-item" >
+                <a class="nav-link" style="color: white; font-family: 'Arial', sans-serif;" routerLink="/taskDashboard">
+                  Assign Task
+                </a>
+          </li>
+          <!-- Schedule -->
+          <li class="nav-item">
+            <a class="nav-link active text-white" routerLink="/calendar">Schedule</a>
+          </li>
+
+          <li class="nav-item" *ngIf="department === 'hr' || department === 'HR'">
+            <a class="nav-link active text-white" routerLink="/HR">HR</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#" (click)="logOut()">LogOut</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

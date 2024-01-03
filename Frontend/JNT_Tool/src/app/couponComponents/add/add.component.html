@@ -1,0 +1,133 @@
+<body>
+  <div class="container mt-3">
+    <div class="body">
+      <h1 class="mt-3" mat-dialog-title>Create New Coupons</h1>
+      <form [formGroup]="couponForm" class="mt-3">
+        <div class="container1">
+          <div class="row">
+            <div class="col-md-6">
+                <!-- Coupon Name -->
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Coupon Name</mat-label>
+                <input matInput placeholder="Ex. Diwali Coupon" formControlName="couponName" />
+                <mat-error *ngIf="couponForm.get('couponName')?.hasError('maxlength')">
+                  Coupon Name should not exceed 100 characters
+                </mat-error>
+                <mat-error *ngIf="couponForm.get('couponName')?.hasError('required')">
+                  Coupon Name is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <!-- Description -->
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Description</mat-label>
+                <input matInput placeholder="" formControlName="description" />
+                <mat-error *ngIf="couponForm.get('description')?.hasError('maxlength')">
+                  Description should not exceed 500 characters
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Start Date -->
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" />
+
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #startDatePicker></mat-datepicker>
+                <div *ngIf="couponForm.get('startDate')!.hasError('pastDateError')">
+                  <mat-error>{{ couponForm.get('startDate')!.getError('pastDateError') }}</mat-error>
+                </div>
+                <mat-error *ngIf="couponForm.get('startDate')?.hasError('required')">Start Date is required</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+              <!-- End Date -->
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>End Date</mat-label>
+                <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" />
+
+                <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #endDatePicker></mat-datepicker>
+                <div *ngIf="couponForm.get('endDate')!.hasError('dateError')">
+                  <mat-error>{{ couponForm.get('endDate')!.getError('dateError') }}</mat-error>
+                </div>
+                <mat-error *ngIf="couponForm.get('endDate')?.hasError('required')">End Date is required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+                <!-- Discount -->
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Discount</mat-label>
+                <div class="input-group">
+                  <span><input matInput type="number" placeholder="" formControlName="discount" /></span>
+                  <!-- Display formatted discount amount -->
+                  <span *ngIf="couponForm.get('discountType')?.value === 'Fixed Amount'">($)</span>
+                  <span *ngIf="couponForm.get('discountType')?.value === 'Percentage'">(%)</span>
+                </div>
+                <mat-error *ngIf="couponForm.get('discount')?.hasError('min')">
+                  Discount cannot be less than 0
+                </mat-error>
+                <mat-error *ngIf="couponForm.get('discount')?.hasError('max')">
+                  {{ couponForm.get('discount')?.getError('max') }}
+                </mat-error>
+                <mat-error *ngIf="couponForm.get('discount')?.hasError('required')">
+                  Discount is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6">
+                <!-- Quantity -->
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Quantity</mat-label>
+                <input matInput type="number" placeholder="" formControlName="quantity" />
+                <mat-error *ngIf="couponForm.get('quantity')?.hasError('min')">
+                  Quantity cannot be less than 0
+                </mat-error>
+                <mat-error *ngIf="couponForm.get('quantity')?.hasError('max')">
+                  Quantity should not exceed 10,000 units
+                </mat-error>
+                <mat-error *ngIf="couponForm.get('quantity')?.hasError('required')">
+                  Quantity is required
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row mt-3">
+            <div class="col-md-12">
+                <!-- Discount Type -->
+              <mat-label style="color: grey;"><b>Discount Type*</b></mat-label>&nbsp;&nbsp;
+              <mat-radio-group formControlName="discountType">
+                <mat-radio-button value="Fixed Amount">Fixed Amount</mat-radio-button>
+                <mat-radio-button value="Percentage">Percentage</mat-radio-button>
+              </mat-radio-group>
+              <mat-error *ngIf="submitted && couponForm.get('discountType')?.hasError('required')">
+                Discount Type is required
+              </mat-error>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div mat-dialog-actions class="button-container mt-3">
+        <button (click)="onCancelClick()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [disabled]="!couponForm.valid"
+          (click)="onSaveClick()">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</body>

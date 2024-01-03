@@ -1,0 +1,168 @@
+h2 {
+  font-size: 30px; /* Adjust the font size as needed */
+  color: #0a0a0a; /* Change the color to your preferred color code */
+  /* Add any additional styling if necessary */
+}
+
+.leave-status {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 15px; /* Adjust the font size as needed */
+}
+
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+thead {
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+.button-container {
+  text-align: right;
+  margin-right: 9rem;
+  margin-bottom: 10px;
+}
+button:not(:last-child) {
+  margin-right: 5px;
+}
+.button-container {
+  text-align: right;
+  margin-bottom: 10px;
+}
+/* Add your general styles here */
+.modal-content {
+  /* Customize the modal content */
+  padding: 20px;
+}
+
+.modal-header {
+  /* Customize the modal header */
+  background-color: hsl(218, 41%, 15%);
+  color: #fff;
+}
+
+
+.modal-footer {
+  /* Customize the modal footer */
+  background-color: #f8f9fa;
+}
+
+/* Style for form elements */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.validation-message {
+  color: red;
+  margin-top: 10px;
+}
+
+/* Style for buttons */
+.btn-primary {
+  background-color: #052f6e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+
+}
+.btn btn icon-btn{
+  background-color: #1b5dc0;
+
+}
+
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: #fff;
+  border: none;
+  
+  cursor: pointer;
+}
+
+/* Disable the button when it's not valid */
+.btn-primary[disabled],
+.btn-secondary[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.upperMargin {
+  margin-top: 5rem;
+}
+.button-approve {
+  background-color: #28a745; /* Green background color */
+  color: #ffffff; /* Text color */
+   /* Adjust padding as needed */
+  border: none; /* Remove border for a cleaner look */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+/* Hover effect for "Approve" button */
+.button-approve:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+/* Style for the "Reject" button */
+.button-reject {
+  background-color: #dc3545; /* Red background color */
+  color: #ffffff; /* Text color */
+ /* Adjust padding as needed */
+  border: none; /* Remove border for a cleaner look */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+/* Hover effect for "Reject" button */
+.button-reject:hover {
+  background-color: #c82333; /* Darker red on hover */
+}
+
+
+
+button:hover {
+  background-color: #0a0dcc;
+}
+
+.noDataMessage {
+  margin-top: 20px;
+  color: #777;
+}
+
+.text-danger {
+  color: #dc3545; /* Red color for danger/error text */
+  font-size: 0.875rem; /* Adjust font size as needed */
+  margin-top: 0.25rem; /* Add some spacing between the input and the error message */
+}
+
+/* Optional: Style for the entire error container */
+.validation-message {
+  margin-top: 0.5rem; /* Add more spacing if needed */
+}

@@ -1,0 +1,70 @@
+<app-header></app-header>
+<br><br><br>
+<div class="selectdrop">
+  <section>
+
+    <form>
+      <div class="row mt-5">
+        <div class="col-6">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              {{ selectedMonth ? selectedMonth : "Select Month" }}
+            </button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let month of months">
+                <a class="dropdown-item" (click)="selectMonth(month)">{{ month }}</a>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false" > 
+         {{ selectedEmployee ? selectedEmployee.firstName : "Select User" }}
+            </button>
+            <ul class="dropdown-menu">
+              <li *ngFor="let employee of employeeData">
+                <a class="dropdown-item" (click)="selectEmployee(employee)">{{ employee.firstName }} {{employee.lastName}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </form>
+  </section>
+  <div class="mt-4">
+    <div class="table-responsive">
+      <table class="table project-table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Role</th>
+            <th>Salary Month</th>
+            <th>Salary</th>
+            <th>Leaves</th>
+            <th>Deductions</th>
+            <th>Net Pay</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of reportData">
+            <td>{{ record.management.firstName}}</td>
+            <td>{{ record.management.department }}</td>
+            <td>{{ record.salaryMonth }}</td>
+            <td>{{ record.salary }}</td>
+            <td>{{ record.leaves }}</td>
+            <td>{{ record.deductions }}</td>
+            <td>{{ record.netPay }}</td>
+          </tr>
+        </tbody>
+      </table>
+       <div *ngIf="showReportGrid && reportData.length === 0" class="no-record-message">
+    <p>No data available.</p>
+  </div>
+    </div>
+  </div>
+</div>

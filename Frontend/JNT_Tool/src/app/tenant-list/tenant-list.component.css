@@ -1,0 +1,420 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+ 
+.table th, .table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+ 
+.table {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+ 
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+ 
+.table tr:hover {
+  background-color: #e0e0e0;
+}
+ 
+.table td button {
+  /* background-color: #007bff; */
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+ 
+.table td button:hover {
+  background-color: #0056b3;
+  /* background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); */
+}
+ 
+/* dashboard.component.css */
+ 
+button.btn-primary {
+  background-color: #007bff;
+  /* background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+ 
+button.btn-primary:hover {
+  background-color: #0056b3;
+  /* background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); */
+}
+ 
+/* Form Container */
+.form-container {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+ 
+/* Form Input Fields */
+.form-group {
+  margin-bottom: 15px;
+}
+ 
+.form-group label {
+  font-weight: bold;
+  display: block;
+}
+ 
+.form-group input[type="text"],
+.form-group input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+ 
+/* Submit Button */
+button[type="submit"] {
+  /* background-color: #007bff; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+}
+ 
+button[type="submit"]:hover {
+  /* background-color: #0056b3; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+}
+ 
+/* Add this CSS to your component's CSS file or in your global CSS file */
+ 
+/* Style for the "Create User" button */
+.btn-create-user {
+  /* background-color: #007bff; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+ 
+.btn-create-user:hover {
+  /* background-color: #0056b3; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+}
+ 
+/* Style for spacing between buttons */
+.button-spacing {
+  margin-left: 10px;
+}
+ 
+/* Style for the table */
+.table-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px; /* Adjust the margin-top value as needed */
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
+ 
+/* Style for the "Edit" button (yellow background) */
+.btn-edit {
+  background-color: yellow;
+  color: #000; /* Text color, adjust as needed */
+}
+.customInvite{
+  /* background-color:#084874 ; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+}
+th{
+  /* background-color:#084874 ; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+}
+/* Style for the "Delete" button (red background) */
+.btn-delete {
+  background-color: red;
+  color: #fff; /* Text color, adjust as needed */
+}
+.upperMargin{
+  margin-top: 7rem;
+}
+.marginLeft{
+  margin-left: 15px;
+  /* background-color: #007bff; */
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+.navbar{
+  /* background-color: #007bff; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+}
+/* Style for invalid input */
+/* Style for invalid input */
+/* Style for form */
+#editUserModal form {
+  display: flex;
+  flex-direction: column;
+}
+ 
+/* Style for form groups */
+#editUserModal .form-group {
+  margin-bottom: 15px;
+}
+ 
+/* Style for labels */
+#editUserModal label {
+  font-weight: bold;
+}
+ 
+/* Style for input fields */
+#editUserModal input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+ 
+/* Style for invalid feedback messages */
+#editUserModal .invalid-feedback {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+ 
+/* Style for highlighting invalid input fields */
+#editUserModal .is-invalid {
+  border: 1px solid red;
+}
+/* Style for invalid feedback messages */
+.invalid-feedback {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+ 
+/* Style for highlighting invalid input fields */
+.is-invalid {
+  border: 1px solid red;
+}
+ 
+/* Optional: Style for form groups */
+#createUserModal .form-group {
+  margin-bottom: 15px;
+}
+ 
+/* Optional: Style for labels */
+#createUserModal label {
+  font-weight: bold;
+}
+ 
+/* Optional: Style for input fields */
+#createUserModal input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+ 
+label .required {
+  color: red;
+  margin-left: 3px;
+}
+ 
+.error-message {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 5px;
+}
+ 
+label .required {
+  color: red;
+  margin-left: 3px;
+}
+ 
+label[for="confirmPassword"] {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+ 
+#confirmPassword {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px; /* Add margin-bottom for spacing */
+}
+ 
+.invalid-password {
+  border: 1px solid #ff0000;
+}
+ 
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+ 
+.required-field {
+  color: #ff0000;
+}
+ 
+.form-group {
+  margin-bottom: 20px;
+}
+ 
+label[for="password"] {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+ 
+#password {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+ 
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+ 
+.required-field {
+  color: #ff0000;
+}
+ 
+.error {
+  border: 1px solid #ff0000;
+}
+ 
+button {
+  /* background-color: #007bff; Blue color */
+  color: #fff; /* White text color */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+ 
+button:disabled {
+  background-color: #a0a0a0;
+  cursor: not-allowed;
+}
+ 
+.modal {
+  color: #000; /* Set the text color for the modal */
+}
+ 
+.nav-item:hover{
+  cursor: pointer;
+}
+ 
+/* tenant-list.component.css */
+ 
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #bdc3c7;
+}
+ 
+th {
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+  padding: 15px;
+  border: 1px solid #bdc3c7;
+}
+ 
+td {
+  border: 1px solid #bdc3c7;
+  padding: 15px;
+}
+ 
+.table tr:nth-child(even) {
+  /* background-color: #f2f2f2; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+}
+ 
+.table tr:hover {
+  /* background-color: #e0e0e0; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+}
+ 
+.table td button {
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  /* background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); */
+}
+ 
+.table td button:hover {
+  /* background: linear-gradient(to bottom right, hsl(219, 41%, 31%), hsl(219, 47%, 54%)); */
+}
+ 
+/* Additional styles specific to tenant-list.component.css */
+ 
+.customInvite {
+  /* background-color: #084874; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+}
+ 
+th {
+  /* background-color: #084874; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+}
+ 
+.upperMargin {
+  margin-top: 7rem;
+}
+ 
+.marginLeft {
+  margin-left: 15px;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+ 
+.navbar {
+  /* background-color: #007bff; */
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+}
+ 
+.unique {
+  margin-top:-100px;
+}

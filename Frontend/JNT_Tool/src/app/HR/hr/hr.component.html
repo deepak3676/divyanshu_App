@@ -1,0 +1,157 @@
+<app-header></app-header>
+
+<!-- <button class="btn btn-primary" (click)="openSalaryPopup()">ADD Salary</button> -->
+<br /><br /><br /><br /><br /><br /><br />
+
+<div class="row p-5">
+  <div class="col">
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="display: none;">ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tenant of tenants">
+            <td style="display: none;">{{ tenant.id }}</td>
+            <td>{{ tenant.firstName }} {{ tenant.lastName }}</td>
+            <td>{{ tenant.department }}</td>
+            <td>{{ tenant.email }}</td>
+            <td>
+              <!-- Add a button for each row to open the salary popup -->
+              <button class="btn btn-primary" (click)="openSalaryPopup(tenant)">
+                Add Salary
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- The Salary Popup -->
+<div class="modal" [class.show]="isSalaryPopupOpen">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Salary</h4>
+        <button type="button" class="close" (click)="closeSalaryPopup()">
+          &times;
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        <div class="form-group" style="display: none">
+          <label for="employeeId">Employee Id</label>
+          <input
+            type="text"
+            class="form-control"
+            id="employeeId"
+            [(ngModel)]="salaryRecord.employeeId"
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeId">Employee Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="employeeName"
+            [(ngModel)]="salaryRecord.employeeName"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="salaryMonth">Salary Month</label>
+          <select
+            class="form-control"
+            id="salaryMonth"
+            [(ngModel)]="salaryRecord.salaryMonth"
+            required
+          >
+            <option value="" disabled selected>Select Month</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="salary">Salary</label>
+          <input
+            type="number"
+            class="form-control"
+            id="salary"
+            [(ngModel)]="salaryRecord.salary"
+            required
+            step="1"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="leaves">Leaves</label>
+          <input
+            type="text"
+            class="form-control"
+            id="leaves"
+            [(ngModel)]="salaryRecord.leaves"
+            (input)="updateDeduction()"
+            required
+            pattern="^\d{1,2}(\.\d{0,1})?$"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="deduction">Deduction</label>
+          <input
+            type="text"
+            class="form-control"
+            id="deductions"
+            [(ngModel)]="salaryRecord.deductions"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="netPay">Net Pay</label>
+          <input
+            type="text"
+            class="form-control"
+            id="netPay"
+            [(ngModel)]="salaryRecord.netPay"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="saveSalary()">
+          Save
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="closeSalaryPopup()"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

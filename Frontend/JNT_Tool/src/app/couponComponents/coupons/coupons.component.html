@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="mat-elevation-z8">
+    <mat-toolbar color="primary">
+      <span class="d-inline-block">
+        <h1 class="mb-0"><b>Available Coupons</b></h1>
+      </span>
+      <span class="example-spacer"></span>
+      <div class="form-group">
+        <input matInput class="form-control" (keyup)="applyFilter($event)" placeholder="Search by Filter" #input>
+      </div>
+      <button class="Addbtn" (click)="openAddForm()">Add Coupon</button>
+    </mat-toolbar>
+
+    <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style="  background-color: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); padding-left: 25px;">
+          ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="couponCode" class="tb">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style=" background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Coupon Code</th>
+        <td mat-cell *matCellDef="let row"> {{row.couponCode}} </td>
+      </ng-container>
+      <ng-container matColumnDef="couponName" class="tb">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style="background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Coupon Name</th>
+        <td mat-cell *matCellDef="let row">
+          <div style="max-width: 200px;"> 
+            {{ breakWords(row.couponName, 30) }}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description" class="tb">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style="background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Coupon Description</th>
+        <td mat-cell *matCellDef="let row">
+          <div style="max-width: 300px;"> 
+            {{ breakWords(row.description, 30) }}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="discount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style="background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Discount</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.discountType === 'Percentage' ? row.discount + '%' : '$' + row.discount }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style=" background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Start Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.startDate | date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style=" background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          End Date</th>
+        <td mat-cell *matCellDef="let row"> {{row.endDate | date}} </td>
+      </ng-container>
+      <ng-container matColumnDef="discountType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header
+          style=" background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Discount Type</th>
+        <td mat-cell *matCellDef="let row"> {{row.discountType}} </td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th style="padding: 25px;" mat-header-cell *matHeaderCellDef mat-sort-header
+          style=" background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white; padding-left: 25px;">
+          Actions</th>
+        <td mat-cell *matCellDef="let row">
+          <button class="btn btn-primary custom-button" (click)="openEditForm(row)">
+            <mat-icon>edit</mat-icon>
+          </button>&nbsp;
+          <button class="btn btn-danger custom-button" (click)="deleteCoupons(row.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>
+
+<!-- Delete confirmation dialog -->
+<div *ngIf="showDeleteConfirmation" class="delete-confirmation">
+  <div class="confirmation-box">
+    <p style="margin-left: 0px;">Are you sure you want to delete this coupon ?</p>
+    <button style="color:red; margin-left: 100px; margin-right: 5px;" mat-button
+      (click)="confirmDelete(couponIdToDelete)">Yes</button>
+
+    <button style="background-color:hsl(219, 51%, 50%); color: white; margin-right: -40px;" mat-button
+      (click)="cancelDelete()">No</button>
+  </div>
+</div>

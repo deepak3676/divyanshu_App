@@ -1,0 +1,47 @@
+<app-header ></app-header>
+<!-- dashboard.component.html -->
+<div class="container ml-5">
+  <main>
+    <div *ngIf="showContent" class="table-container">
+      <button *ngIf="showProjectsTable" class="create-button" (click)="openCreateProjectDialog()">
+        Create New Project
+      </button>
+      <table *ngIf="showProjectsTable" class="project-table" border="1px">
+        <thead>
+          <tr>
+            <th>Project Name</th>
+            <th>Client</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Country</th>
+            <th>Budget ($)</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Add your table content here -->
+          <tr *ngFor="let project of projects">
+            <td class="project-name">{{ project.projectName }}</td>
+            <td class="project-name">{{ project.client }}</td>
+            <td>{{ project.startDate | date:'shortDate'}}</td>
+            <td>{{ project.endDate | date:'shortDate'}}</td>
+            <td>{{ project.country }}</td>
+            <td>{{ project.budget }}</td>
+            <td>{{ project.status }}</td>
+            <td>
+              <!-- Action buttons for each row -->
+              <button mat-icon-button (click)="openUpdateProjectDialog(project)"  class=" customSize small-icon edit">
+                <mat-icon class="customMargins">edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="openConfirmationDialog(project)"  class="customSize customLeft small-icon delete">
+                <mat-icon class="customMargins">delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<!-- <ngx-ui-loader text="Please Wait..." fgsType="square-loader" size = "large" blur= 12,></ngx-ui-loader> -->

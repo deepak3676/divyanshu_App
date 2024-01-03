@@ -1,0 +1,85 @@
+<app-header></app-header>
+<div class="container customUpperMargin">
+  <div class="row">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-l customCsv text-white" (click)="exportToCSV()">
+        Export to CSV
+      </button>
+    </div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-6">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          {{ selectedMonth ? selectedMonth.name : "Select Month" }}
+        </button>
+        <ul class="dropdown-menu">
+          <li *ngFor="let month of months">
+            <a class="dropdown-item" (click)="selectMonth(month)">{{
+              month.name
+              }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-6 dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Select Projects
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="selectAll" (change)="selectAllProjects()" />
+            <label class="form-check-label"> Select All </label>
+          </div>
+        </li>
+        <li *ngFor="let project of projectNames">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="project.checked"
+              id="{{ 'Checkme' + project.projectId }}" (change)="selectProject(project)" />
+            <label class="form-check-label" for="{{ 'Checkme' + project.projectId }}">
+              {{ project.projectName }}
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <table class="table table-striped mt-3 project-table">
+    <thead>
+      <tr class="table-dark">
+        <!-- <th scope="col">Project Id</th> -->
+        <th scope="col">Project Name</th>
+        <th scope="col">Client</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Country</th>
+        <th scope="col">Budget ($)</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="filteredProjects.length > 0; else noDataMessage">
+        <tr *ngFor="let project of filteredProjects">
+          <!-- <td scope="row">{{ project.projectId }}</td> -->
+          <td class="project-name">{{ project.projectName }}</td>
+          <td class="project-name">{{ project.client }}</td>
+          <td>{{ project.startDate | date : "yyyy-MM-dd" }}</td>
+          <td>{{ project.endDate | date : "yyyy-MM-dd" }}</td>
+          <td>{{ project.country }}</td>
+          <td>{{ project.budget }}</td>
+          <td>{{ project.status }}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+
+  </table>
+  <ng-template #noDataMessage class="text-center">
+    <div class="mt-3">
+      <p class="text-msg">No projects available</p>
+    </div>
+  </ng-template>
+</div>
+<!-- <ngx-ui-loader text="Please Wait..." fgsType="square-loader" size = "large" blur= 12,></ngx-ui-loader> -->

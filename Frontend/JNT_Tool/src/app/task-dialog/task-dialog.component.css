@@ -1,0 +1,51 @@
+/* Add Task Dialog CSS */
+.task-dialog-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+  }
+  
+  .task-form-field {
+    width: 100%;
+    /* margin-bottom: 15px; */
+  }
+  
+  .task-form-field:hover {
+    border-color: #66afe9;
+  }
+  
+  .task-form-field:focus {
+    outline: none;
+    border-color: #4cae4c;
+    box-shadow: 0 0 5px rgba(76, 174, 76, 0.5);
+  }
+  
+  .task-button-container {
+    display: flex;
+
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .task-dialog-actions {
+    margin-top: 20px;
+    text-align: right;
+    
+  }
+  /* .Add-Task-Dialog{
+    margin-top: 100px;
+  } */
+
+  .customButton{
+
+    background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+    color: white !important;
+  }
+
+  .container{
+    margin-top: 10px;
+    height: 40%;
+  }

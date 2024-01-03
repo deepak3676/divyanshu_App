@@ -1,0 +1,78 @@
+.customUpperMargin {
+  margin-top: 6rem;
+}
+
+table {
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+th {
+  background: linear-gradient(
+    to bottom right,
+    hsl(218, 41%, 15%),
+    hsl(218, 41%, 35%)
+  );
+}
+.col-6 .dropdown,
+.col-6 .dropdown button,
+.col-6 .dropdown-toggle,
+.col-6 .dropdown-menu,
+.col-6 .dropdown-menu a {
+  width: 100%;
+}
+
+.dropdown-menu a {
+  padding: 8px;
+}
+
+.table {
+  width: 100%;
+}
+
+.form-check {
+  margin-left: 10px;
+}
+.text-center {
+  text-align: center;
+}
+.dropdown-toggle {
+  background: linear-gradient(
+    to bottom right,
+    hsl(218, 41%, 15%),
+    hsl(218, 41%, 35%)
+  );
+}
+.customCsv {
+  background: linear-gradient(
+    to bottom right,
+    hsl(218, 41%, 15%),
+    hsl(218, 41%, 35%)
+  );
+}
+.project-name {
+  max-width: 30ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.dropdown-menu {
+  position: absolute;
+  inset: 0px auto auto 0px;
+  margin: 0px;
+  transform: translate3d(12.4444px, 40px px, 0px);
+  max-width: 71ch;
+  overflow-y: scroll;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  width: 100%;
+  border-collapse: collapse;
+}

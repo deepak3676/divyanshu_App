@@ -1,0 +1,90 @@
+
+<app-header></app-header>
+<div class="container1" >
+  <div class="buttontask">
+ 
+  <inline class="dialog-content" [formGroup]="userTasks">
+    <mat-form-field class="form-field" >
+      <mat-label>User Email</mat-label>
+      <input matInput formControlName="userName" id="userName" [matAutocomplete]="auto" (input)="filterSuggestions(userTasks.value.userName)" />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let suggestion of filteredSuggestions" [value]="suggestion">
+          {{ suggestion }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <button type="submit" class="addUserButton show-grid-button" (click)="getUserTasks(userTasks.value.userName)">Filter</button>
+  </inline>
+  <button (click)="openDialog()" class="addUserButton">Add Task</button>
+  <button (click)="showallData()" class="addUserButton">Show all data</button>
+</div>
+<div class="allData" *ngIf="!showSpecificData">
+  <table class="tableGrid">
+    <thead class="tableHead">
+      <tr>
+        <th>Task No.</th>
+        <th>Task Name</th>
+        <th>Task Description</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>User Email</th>
+        <th style="display: none;" >Tenant Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="tableData">
+      <tr *ngFor="let task of tasks ; let i =index">
+        <td>{{ i +1 }}</td>
+        <td class="taskcss">{{ task.taskName }}</td>
+        <td class="taskcss">{{ task.taskDescription }}</td>
+        <td>{{ task.taskStartTime | date:'yyyy-MM-dd' }}</td>
+        <td>{{ task.taskEndTime | date:'yyyy-MM-dd' }}</td>
+        <td>{{task.userName}}</td>
+        <td style="display: none;">{{task.tenantName}}</td>
+        <td>
+          <button (click)="editTask(task)" class=" btn btn-primary custom-button">
+            <mat-icon style="color: white;">edit</mat-icon>
+          </button>
+          <button (click)="openConfirmationDialog(task.id)" class="btn btn-danger custom-button">
+            <mat-icon style="color: white;">delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  <div class="specificData" *ngIf="showSpecificData" >
+    <table class="tableGrid" >
+      <thead class="tableHead">
+        <tr>
+          <th>Task No.</th>
+          <th>Task Name</th>
+          <th>Task Description</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>User Email</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody class="tableData">
+        <tr *ngFor="let task1 of userTasksDetails; let i = index" class="tableRow">
+          <td>{{ i + 1 }}</td>
+          <td class="taskcss">{{ task1.taskName }}</td>
+          <td class="taskcss">{{ task1.taskDescription }}</td>
+          <td>{{ task1.taskStartTime | date:'yyyy-MM-dd' }}</td>
+          <td>{{ task1.taskEndTime | date:'yyyy-MM-dd' }}</td>
+          <td>{{ task1.userName }}</td>
+          <td>
+            <button matbutton (click)="editTask(task1)" class="btn btn-primary custom-button">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button matbutton (click)="openConfirmationDialog(task1.id)" class="btn btn-danger custom-button">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</div>

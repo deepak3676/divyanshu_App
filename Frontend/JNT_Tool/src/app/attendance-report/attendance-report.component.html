@@ -1,0 +1,72 @@
+<app-header>
+</app-header>
+<br><br><br>
+<div class="selectdrop">
+    <section class="mt-5">
+        <h2 style="color: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));">Attendance Report</h2>
+        <form [formGroup]="attendanceForm">
+          <div class="row">
+            <div class="col-6">
+              <div class="dropdown">
+                <button
+                  class="btn btn-secondary dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{ selectedMonth ? selectedMonth : "Select Month" }}
+                </button>
+                <ul class="dropdown-menu">
+                  <li *ngFor="let month of months">
+                    <a class="dropdown-item" (click)="getbyMonthName(month)">{{ month }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+      
+            <div class="col-6">
+              <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ selectedEmployee ? selectedEmployee : "Select Users" }}
+                </button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" (click)="selectAllEmployees()">Select All Users</a>
+                    </li>
+                      <li *ngFor="let employee of employeeNames">
+                          <a class="dropdown-item" (click)="selectEmployee(employee)">{{ employee }}</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </form>
+    </section>
+    <div *ngIf="showTable" class="table-container" class="scrollable-container">
+        <table class="table">
+            <thead style="padding: 50px;">
+                <tr class="column">
+                    <th style="background:linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white;">First Name</th>
+                    <th style="background:linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white;">Last Name</th>
+                    <th style="background:linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white;">Department</th>
+                    <th style="background:linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white;">Login Time</th>
+                    <th style="background:linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white;">Logout Time</th>
+                    <th style="background:linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%)); color: white;">Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let record of gridData">
+                <td>{{ record.management.firstName }}</td>
+                <td>{{ record.management.lastName }}</td>
+                <td>{{ record.management.department }}</td>
+                <td>{{ formatDate(record.attendance.loginTime) }}</td>
+                <td>{{ formatDate(record.attendance.logoutTime) }}</td>
+                <td>{{ record.attendance.hours }}</td>   
+              </tr>
+            </tbody>
+               
+        </table>
+        <div *ngIf="gridData.length === 0" class="no-record-message">
+          No records available.
+      </div>
+    </div>
+</div>

@@ -1,0 +1,168 @@
+.background-radial-gradient {
+  background-color: hsl(218, 41%, 15%);
+  background-image: radial-gradient(
+      650px circle at 0% 0%,
+      hsl(218, 41%, 35%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%
+    ),
+    radial-gradient(
+      1250px circle at 100% 100%,
+      hsl(218, 41%, 45%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%
+    );
+}
+
+#radius-shape-1 {
+  height: 220px;
+  width: 220px;
+  top: -60px;
+  left: -130px;
+  background: radial-gradient(#44006b, #ad1fff);
+  overflow: hidden;
+}
+
+#radius-shape-2 {
+  border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+  bottom: -60px;
+  right: -110px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(#44006b, #ad1fff);
+  overflow: hidden;
+}
+
+.bg-glass {
+  background-color: hsla(0, 0%, 100%, 0.9) !important;
+  /* backdrop-filter: saturate(200%) blur(25px); */
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #eee !important; /* Set background color for the entire body */
+}
+
+.login-container {
+  position: relative;
+}
+
+form {
+  max-width: 600px; /* Set the same maximum width as the signup page */
+  width: 100%;
+  background-color: #ffffff;
+  padding: 30px; /* Increased padding */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px; /* Increased border radius */
+  box-sizing: border-box;
+  margin-right: auto; /* Added to push the form to the left */
+}
+.login-heading {
+  font-size: 2em; /* Adjust the size as needed */
+  color: black;
+}
+.card {
+  width: 1100px; /* Set card width to 100% */
+  border-radius: 25px; /* Adjusted border radius */
+}
+.marginAlign {
+  margin-left: -120px;
+}
+.form-group {
+  margin-bottom: 25px; /* Increased margin-bottom */
+}
+.img-fluid {
+  margin-left: 150px;
+}
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 12px; /* Increased margin-bottom */
+  font-size: 16px; /* Increased font size */
+}
+
+input {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  margin-top: 8px; /* Increased margin-top */
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Increased border radius */
+  transition: border-color 0.3s;
+  font-size: 14px; /* Increased font size */
+}
+
+input:focus {
+  border-color: #3498db;
+}
+
+.is-invalid {
+  border-color: #e74c3c;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 16px; /* Increased font size */
+  margin-top: 8px; /* Increased margin-top */
+}
+
+button {
+  width: 100%;
+  padding: 12px; /* Increased padding */
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 6px; /* Increased border radius */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px; /* Increased font size */
+}
+
+button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+p {
+  margin-top: 25px; /* Increased margin-top */
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 16px; /* Increased font size */
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+label .required {
+  color: red;
+  margin-left: 3px;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px; /* Increased font size */
+  margin-top: 8px; /* Increased margin-top */
+}
+
+.is-invalid {
+  border-color: red;
+}

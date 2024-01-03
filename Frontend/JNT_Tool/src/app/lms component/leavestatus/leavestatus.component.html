@@ -1,0 +1,189 @@
+<app-header></app-header>
+
+<div class="upperMargin">
+  <div class="leave-status">
+    <div class="button-container">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createUserModal">
+        Apply Leave
+      </button>
+    </div>
+    <h2>Leave Status</h2>
+
+    <table>
+      <thead>
+        <tr>
+
+          <th>Manager Name</th>
+          <th>Employee Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Leave Type</th>
+          <th>Reason</th>
+          <th>Status</th>
+
+          <th>Manager comment</th>
+          <th>Actions</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="leaveStatusData && leaveStatusData.length > 0; else noData">
+          <tr *ngFor="let leave of leaveStatusData">
+
+            <td>{{leave.managerName}}</td>
+            <td>{{leave.employeeName}}</td>
+            <td>{{ leave.startDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ leave.endDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ leave.leaveType }}</td>
+            <td>{{ leave.reason }}</td>
+            <td>{{ leave.status }}</td>
+            <td>{{ leave.managercomment }}</td>
+            <td>
+              <button class="btn btn-primary icon-btn" data-bs-toggle="modal" data-bs-target="#editUserModal"
+                (click)="editLeave(leave)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button class="btn btn-danger icon-btn" (click)="deleteLeave(leave)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="leaveManagementData && leaveManagementData.length > 0; ">
+          <tr *ngFor="let leave of leaveManagementData">
+
+            <td>{{leave.managerName}}</td>
+            <td>{{leave.employeeName}}</td>
+            <td>{{ leave.startDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ leave.endDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ leave.leaveType }}</td>
+            <td>{{ leave.reason }}</td>
+            <td>{{ leave.status }}</td>
+            <td>{{ leave.managercomment }}</td>
+            <td>
+              <ng-container *ngIf="leave.status === 'Pending'; else statusText">
+                <button class="button-approve" (click)="approveLeave(leave)">Approve</button>
+                <button class="button-reject" (click)="rejectLeave(leave)">Reject</button>
+              </ng-container>
+              <ng-template #statusText>
+                {{ leave.status }}
+              </ng-template>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #noData>
+          <tr>
+            <td colspan="9">No data available</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+   <!-- Apply Leave Modal -->
+  <div class="modal fade" id="createUserModal" tabindex="-1" aria-labelledby="createUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="createUserModalLabel">Apply Leave</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="submitLeaveApplication()" #leaveApplicationForm="ngForm">
+
+            <label for="managerNameDropdown">Manager Name: <span class="text-danger">*</span></label>
+            <select id="managerNameDropdown" name="managerNameDropdown" [(ngModel)]="leaveApplication.managerName"
+              required>
+              
+              <option *ngFor="let name of managerNames" [value]="name.firstName">{{ name.firstName }}</option>
+            </select>
+            <br> <label for="StartDate">Leave Start Date: <span class="text-danger">*</span></label>
+            <input type="date" id="StartDate" name="StartDate" [(ngModel)]="leaveApplication.startDate" required><br>
+
+            <label for="EndDate">Leave End Date: <span class="text-danger">*</span></label>
+            <input type="date" id="EndDate" name="EndDate" [(ngModel)]="leaveApplication.endDate" required><br>
+
+            <label for="leaveType">Leave Type: <span class="text-danger">*</span></label>
+            <select id="leaveType" name="leaveType" [(ngModel)]="leaveApplication.leaveType" required>
+              <option value="vacation">Vacation</option>
+              <option value="sick">Sick Leave</option>
+            </select><br>
+
+            <label for="reason">Reason: <span class="text-danger">*</span></label>
+            <textarea id="reason" name="reason" [(ngModel)]="leaveApplication.reason" required
+              maxlength="100"></textarea>
+
+            <!-- Display validation messages -->
+            <div *ngIf="leaveApplicationForm.submitted && leaveApplicationForm.invalid" class="validation-message">
+              Please fill out all required fields.
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="!leaveApplicationForm.valid"
+            (click)="submitLeaveApplication()" data-bs-toggle="modal">Submit</button>
+          <button type="button" class="btn btn-secondary" (click)="closeLeaveApplicationPopup()"
+            data-bs-dismiss="modal">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Leave Modal -->
+  <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editUserModalLabel">Edit Leave</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="submitUpdatedLeaveApplication()" #editLeaveForm="ngForm">
+            <label for="managerNameDropdown">Manager Name: <span class="text-danger">*</span></label>
+            <select id="managerNameDropdown" name="managerNameDropdown" [(ngModel)]="leaveApplication.managerName"
+              required>
+              <option *ngFor="let name of managerNames" [value]="name.firstName">{{ name.firstName }}</option>
+            </select>
+
+
+
+
+
+            <br>
+
+            <label for="StartDate">Leave Start Date: <span class="text-danger">*</span></label>
+            <input type="date" id="StartDate" name="StartDate" [(ngModel)]="leaveApplication.startDate" required><br>
+
+            <label for="EndDate">Leave End Date: <span class="text-danger">*</span></label>
+            <input type="date" id="EndDate" name="EndDate" [(ngModel)]="leaveApplication.endDate" required><br>
+
+            <label for="leaveType">Leave Type: <span class="text-danger">*</span></label>
+            <select id="leaveType" name="leaveType" [(ngModel)]="leaveApplication.leaveType" required>
+              <option value="vacation">Vacation</option>
+              <option value="sick">Sick Leave</option>
+            </select><br>
+
+            <label for="reason">Reason: <span class="text-danger">*</span></label>
+            <textarea id="reason" name="reason" [(ngModel)]="leaveApplication.reason" required
+              maxlength="150"></textarea>
+
+            <!-- Display validation messages -->
+            <div *ngIf="editLeaveForm.submitted && editLeaveForm.invalid" class="validation-message">
+              Please fill out all required fields.
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" [disabled]="!editLeaveForm.valid"
+            (click)="submitUpdatedLeaveApplication()" data-bs-toggle="modal">Submit</button>
+          <button type="button" class="btn btn-secondary" (click)="closeLeaveApplicationPopup()"
+            data-bs-dismiss="modal">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

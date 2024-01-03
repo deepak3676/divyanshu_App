@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>Edit Project</h2>
+<div mat-dialog-content [formGroup]="updateForm" class="form-container">
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="projectName" id="name" [errorStateMatcher]="matcher"/>
+      <mat-error *ngIf="updateForm.get('projectName').hasError('maxlength')">Limit Exceeds max length 100</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-field">
+      <mat-label>Client</mat-label>
+      <input matInput formControlName="client" id="client" [errorStateMatcher]="matcher"/>
+      <mat-error *ngIf="updateForm.get('client').hasError('maxlength')">Limit Exceeds max length 100</mat-error>
+    </mat-form-field>
+    
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <mat-label>Start Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="startDate" id="startDate" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <mat-label>End Date</mat-label>
+      <input matInput [matDatepicker]="endPicker" formControlName="endDate" id="endDate" />
+      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+      <mat-datepicker #endPicker></mat-datepicker>
+      <mat-error *ngIf="updateForm.get('endDate').hasError('endDateBeforeStartDate')">
+        End date cannot be before start date
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field class="form-field">
+      <mat-label>Country</mat-label>
+      <mat-select formControlName="country" id="country">
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{ country }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <mat-label>Budget ($)</mat-label>
+      
+      <input matInput formControlName="budget" id="budget" type="number"/>
+      <mat-error *ngIf="updateForm.get('budget').hasError('max')">Limit exceeds max length 9</mat-error>
+    </mat-form-field>
+    
+  </div>
+</div>
+<div mat-dialog-actions class="button-container">
+  <button mat-button (click)="onCancelClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick(updateForm.value)" 
+    [disabled]="!updateForm.valid || updateForm.pristine 
+    || !updateForm.get('budget').value || updateForm.get('budget').value === ''"
+    [ngClass]="{'disabled-button': !updateForm.valid || updateForm.pristine 
+    || !updateForm.get('budget').value || updateForm.get('budget').value === ''}" >
+    Save
+  </button>
+</div>
+<!-- <ngx-ui-loader text="Please Wait..." fgsType="square-loader" size = "large" blur= 12,></ngx-ui-loader> -->

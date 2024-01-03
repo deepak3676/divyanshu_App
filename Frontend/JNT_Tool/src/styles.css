@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+body{
+    overflow-y: auto !important; /* Enable vertical scrolling */
+    padding: 0 !important;
+  }
+
+
+.success-snackbar {
+  --mdc-snackbar-container-color: rgb(73, 184, 73);
+  --mat-mdc-snack-bar-button-color: yellow;
+  --mdc-snackbar-supporting-text-color: white;
+}

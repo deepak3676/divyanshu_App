@@ -1,0 +1,61 @@
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px; 
+}
+
+.button-container button {
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+}
+.button-container button:disabled {
+  background: lightgray; /* Light color for the disabled state */
+  cursor: not-allowed;
+}
+.button-container button:hover{
+  background: linear-gradient(to bottom right, hsl(219, 41%, 31%), hsl(219, 47%, 54%));
+}
+
+.mat-dialog-actions {
+  margin-top: 20px;
+  text-align: right; 
+}
+
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 8px; 
+  background-color: #fafafa; 
+}
+
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px; 
+}
+
+
+.form-field {
+  width: 48%;
+  padding: 10px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  box-sizing: border-box; 
+}
+
+
+.form-field:hover {
+  border-color: #375a76; 
+}
+
+
+.form-field:focus {
+  outline: none; 
+  border-color: #2196f3; 
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5); 
+}

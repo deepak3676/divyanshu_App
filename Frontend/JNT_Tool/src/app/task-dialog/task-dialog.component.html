@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>Add task</h2>
+<div mat-dialog-content [formGroup]="taskDetails" class="task-dialog-content">
+  <mat-form-field class="task-form-field">
+    <mat-label>Task Name</mat-label>
+    <input matInput formControlName="taskName" id="taskName" />
+    <mat-error *ngIf="taskDetails.get('taskName').hasError('maxlength')">Limit Exceeds max length 100</mat-error>
+  </mat-form-field>
+  <mat-form-field class="task-form-field">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="taskDescription" id="taskDescription"></textarea>
+    <mat-error *ngIf="taskDetails.get('taskDescription').hasError('maxlength')">Limit Exceeds max length 500</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="task-form-field">
+    <mat-label>Start Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="taskStartTime" id="taskStartTime" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="taskDetails.get('taskStartTime')!.hasError('pastDateError')">{{ taskDetails.get('taskStartTime')!.getError('pastDateError') }}</mat-error>
+      <mat-error *ngIf="taskDetails.get('taskStartTime')!.hasError('requiredError') && taskDetails.get('taskStartTime')!.touched">{{ taskDetails.get('taskStartTime')!.getError('requiredError') }}</mat-error>
+   </mat-form-field>
+  <mat-form-field class="task-form-field">
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="endPicker" formControlName="taskEndTime" id="taskEndTime" />
+    <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+    <mat-datepicker #endPicker></mat-datepicker>
+      <mat-error *ngIf="taskDetails.get('taskEndTime')!.hasError('dateError')">{{ taskDetails.get('taskEndTime')!.getError('dateError') }}</mat-error>
+      <mat-error *ngIf="taskDetails.get('taskEndTime')!.hasError('requiredError') && taskDetails.get('taskEndTime')!.touched">{{ taskDetails.get('taskEndTime')!.getError('requiredError') }}</mat-error>
+  </mat-form-field>
+  <mat-form-field class="task-form-field">
+    <mat-label>User Email</mat-label>
+    <mat-select formControlName="userName" id="userName">
+      <mat-option *ngFor="let user of users" [value]="user.value">
+        {{ user.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions class="task-dialog-actions task-button-container">
+    <button mat-button (click)="onCancelClick()" class="customButton">Cancel</button>
+    <button mat-button (click)="onSaveClick(taskDetails.value)" class="customButton"
+    [disabled]="taskDetails.invalid || taskDetails.hasError('invalidEndDate')">Save</button>
+  
+  </div>

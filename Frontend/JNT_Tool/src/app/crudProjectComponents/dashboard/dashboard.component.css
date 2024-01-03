@@ -1,0 +1,116 @@
+.container {
+  background-color: rgba(255, 255, 255, 0);
+  margin-top: 70px;
+  margin-left: 100px;
+  
+  
+}
+
+main {
+  padding: 20px;
+  flex-grow: 1;
+}
+.customSize{
+  height: 35px;
+  width: 35px;
+}
+.customMargins{
+  margin-left: -8px;
+  margin-bottom: 8px;
+}
+.customLeft{
+  margin-left: 10px;
+}
+/* ... rest of your styles remain unchanged ... */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #bdc3c7;
+}
+
+th {
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+
+  color: white;
+  padding: 15px;
+  border: 1px solid #bdc3c7;
+}
+
+td {
+  border: 1px solid #bdc3c7;
+  padding: 15px;
+}
+
+.create-button {
+  padding: 10px 15px;
+  margin-left: 1100px;
+  cursor: pointer;
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+margin-top: 10px;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+/* button:hover {
+  background: linear-gradient(to bottom right, hsl(219, 41%, 31%), hsl(219, 47%, 54%));
+
+} */
+
+.create-button {
+  margin-bottom: 20px;
+}
+
+.custom-checkbox {
+  display: initial;
+}
+
+.logout {
+  position: fixed;
+  bottom: 40px;
+  width: 130px;
+  left: 50px;
+}
+
+.border {
+  border-style: inset;
+  border-color: azure;
+  background-color: aliceblue;
+}
+.project-name {
+  max-width: 30ch; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word; 
+}
+.project-table {
+  width: 100%; 
+  border-collapse: collapse;
+}
+.edit{
+  padding: 10px 15px;
+  margin-right: 5px;
+  cursor: pointer;
+ height: 40px;
+  background-color: #0d6efd;
+
+  color: white;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+.delete{
+  padding: 10px 15px;
+  margin-right: 5px;
+  cursor: pointer;
+  height: 40px;
+  background-color: #dc3545;
+
+  color: white;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}

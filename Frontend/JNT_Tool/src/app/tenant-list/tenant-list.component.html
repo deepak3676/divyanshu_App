@@ -1,0 +1,410 @@
+<app-header></app-header>
+ 
+<div
+  class="modal fade"
+  id="createUserModal"
+  tabindex="-1"
+  aria-labelledby="createUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="createUserModalLabel">Invite User</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close" (click)="resetForm()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createUserForm">
+          <input type="hidden" id="id" formControlName="id" />
+ 
+          <div class="form-group">
+            <label for="firstName"
+              >First Name<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="firstName"
+              formControlName="firstName"
+              [ngClass]="{
+                'is-invalid':
+                  createUserForm.get('firstName')?.touched &&
+                  createUserForm.get('firstName')?.hasError('required')
+              }"
+            />
+            <div
+              *ngIf="
+                createUserForm.get('firstName')?.touched &&
+                createUserForm.get('firstName')?.hasError('required')
+              "
+              class="invalid-feedback"
+            >
+              First Name is required
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label for="lastName"
+              >Last Name<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="lastName"
+              formControlName="lastName"
+              [ngClass]="{
+                'is-invalid':
+                  createUserForm.get('lastName')?.touched &&
+                  createUserForm.get('lastName')?.hasError('required')
+              }"
+            />
+            <div
+              *ngIf="
+                createUserForm.get('lastName')?.touched &&
+                createUserForm.get('lastName')?.hasError('required')
+              "
+              class="invalid-feedback"
+            >
+              Last Name is required
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label for="email">Email<span class="required">*</span></label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              [ngClass]="{
+                'is-invalid':
+                  createUserForm.get('email')?.touched &&
+                  (createUserForm.get('email')?.hasError('required') ||
+                    createUserForm.get('email')?.hasError('email'))
+              }"
+            />
+            <div
+              *ngIf="
+                createUserForm.get('email')?.touched &&
+                createUserForm.get('email')?.hasError('required')
+              "
+              class="invalid-feedback"
+            >
+              Email is required
+            </div>
+            <div
+              *ngIf="
+                createUserForm.get('email')?.touched &&
+                createUserForm.get('email')?.hasError('email')
+              "
+              class="invalid-feedback"
+            >
+              Invalid email format
+            </div>
+          </div>
+ 
+          <div class="form-group">
+            <label for="department"
+              >Department<span class="required">*</span></label
+            >
+            <input
+              type="text"
+              id="department"
+              formControlName="department"
+              [ngClass]="{
+                'is-invalid':
+                  createUserForm.get('department')?.touched &&
+                  createUserForm.get('department')?.hasError('required')
+              }"
+            />
+            <div
+              *ngIf="
+                createUserForm.get('department')?.touched &&
+                createUserForm.get('department')?.hasError('required')
+              "
+              class="invalid-feedback"
+            >
+              Department is required
+            </div>
+          </div>
+ 
+          <div
+            class="form-group"
+            [ngClass]="{
+              error:
+                createUserForm.get('password')?.invalid &&
+                createUserForm.get('password')?.touched
+            }"
+          >
+            <label for="password"
+              >Password<span class="required">*</span></label
+            >
+            <input type="password" id="password" formControlName="password" />
+            <div
+              *ngIf="
+                createUserForm.get('password')?.hasError('pattern') &&
+                createUserForm.get('password')?.touched
+              "
+              class="error-message"
+            >
+              Password must contain at least one number and one special
+              character.
+            </div>
+            <div
+              *ngIf="
+                createUserForm.get('password')?.invalid &&
+                createUserForm.get('password')?.touched &&
+                !createUserForm.get('password')?.hasError('pattern')
+              "
+              class="error-message"
+            >
+              Please enter password.
+            </div>
+          </div>
+          <label for="confirmPassword"
+            >Confirm Password<span class="required-field">*</span></label
+          >
+          <input
+            id="confirmPassword"
+            type="password"
+            formControlName="confirmPassword"
+            [ngClass]="{
+              'invalid-password':
+                createUserForm.get('confirmPassword')?.invalid &&
+                createUserForm.get('confirmPassword')?.touched
+            }"
+            required
+          />
+ 
+          <div
+            *ngIf="
+              createUserForm.get('confirmPassword')?.hasError('required') &&
+              createUserForm.get('confirmPassword')?.touched
+            "
+            class="error-message"
+          >
+            Confirm Password is required
+          </div>
+ 
+          <div
+            *ngIf="
+              createUserForm.hasError('passwordMismatch') &&
+              createUserForm.get('confirmPassword')?.touched
+            "
+            class="error-message"
+          >
+            Passwords do not match
+          </div>
+ 
+          <div class="form-group" hidden>
+            <label for="tenantName">Tenant Name</label>
+            <input type="text" id="tenantName" formControlName="tenantName" />
+          </div>
+        </form>
+      </div>
+ 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetForm()">
+          Cancel
+        </button>
+        <button
+        class="btn btn-primary"
+          type="button"
+          (click)="createUser()"
+          data-bs-toggle="modal"
+          [disabled]="!createUserForm.valid"
+        >
+          Invite User
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div
+  class="modal fade"
+  id="editUserModal"
+  tabindex="-1"
+  aria-labelledby="editUserModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editUserModalLabel">Edit User</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editUserForm">
+          <input type="hidden" id="id" formControlName="id" />
+ 
+          <div class="modal-body">
+            <form [formGroup]="editUserForm">
+              <div class="form-group">
+                <label for="firstName"
+                  >First Name<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="firstName"
+                  formControlName="firstName"
+                  [ngClass]="{
+                    'is-invalid':
+                      editUserForm.get('firstName')?.touched &&
+                      editUserForm.get('firstName')?.hasError('required')
+                  }"
+                />
+                <div
+                  *ngIf="
+                    editUserForm.get('firstName')?.touched &&
+                    editUserForm.get('firstName')?.hasError('required')
+                  "
+                  class="invalid-feedback"
+                >
+                  First Name is required
+                </div>
+              </div>
+ 
+              <div class="form-group">
+                <label for="lastName"
+                  >Last Name<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="lastName"
+                  formControlName="lastName"
+                  [ngClass]="{
+                    'is-invalid':
+                      editUserForm.get('lastName')?.touched &&
+                      editUserForm.get('lastName')?.hasError('required')
+                  }"
+                />
+                <div
+                  *ngIf="
+                    editUserForm.get('lastName')?.touched &&
+                    editUserForm.get('lastName')?.hasError('required')
+                  "
+                  class="invalid-feedback"
+                >
+                  Last Name is required
+                </div>
+              </div>
+ 
+              <div class="form-group">
+                <label for="department"
+                  >Department<span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  id="department"
+                  formControlName="department"
+                  [ngClass]="{
+                    'is-invalid':
+                      editUserForm.get('department')?.touched &&
+                      editUserForm.get('department')?.hasError('required')
+                  }"
+                />
+                <div
+                  *ngIf="
+                    editUserForm.get('department')?.touched &&
+                    editUserForm.get('department')?.hasError('required')
+                  "
+                  class="invalid-feedback"
+                >
+                  Department is required
+                </div>
+              </div>
+            </form>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancel
+        </button>
+ 
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateUser()"
+          data-bs-toggle="modal"
+          [disabled]="!editUserForm.valid"
+        >
+          Update User
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="container ml-5 mr-5 upperMargin">
+  <!-- Create User Button Section -->
+  <div class="row">
+    <!-- Adjusted margin-bottom -->
+    <div class="col d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn customInvite"
+        data-bs-toggle="modal"
+        data-bs-target="#createUserModal"
+      >
+        Invite User
+      </button>
+    </div>
+  </div>
+ 
+  <!-- Table Section -->
+  <div class="row">
+    <div class="col">
+      <div class="table-container" style="margin-top:1px">
+        <table class="table">
+          <thead>
+            <tr>
+              <!-- <th>ID</th> -->
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Department</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tenant of tenants" (click)="setFormValues(tenant)">
+              <!-- <td>{{ tenant.id }}</td> -->
+              <td>{{ tenant.firstName }}</td>
+              <td>{{ tenant.lastName }}</td>
+              <td>{{ tenant.email }}</td>
+              <td>{{ tenant.department }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editUserModal"
+                >
+                  <i class="fa fa-pencil"></i>
+                </button>
+ 
+               
+                <button
+                  class="marginLeft btn btn-danger"
+                  (click)="deleteTenant(tenant.id)"
+                >
+                <i class="fa fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<ngx-ui-loader text="Please Wait..." fgsColor="#0d6efd" [hasProgressBar]="false"></ngx-ui-loader>

@@ -1,0 +1,93 @@
+/* Add this CSS to your component's stylesheet */
+
+
+.container1 {
+  background-color: rgba(255, 255, 255, 0);
+  margin : 10% 5% 1% 5%; /* Use percentage for responsive margin */
+  padding: 20px;
+  font-family: var(--bs-body-font-family);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.tableGrid {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #bdc3c7;
+}
+
+.tableHead th {
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+  padding: 15px;
+  border: 1px solid #bdc3c7;
+}
+
+.tableData td {
+  border: 1px solid #bdc3c7;
+  padding: 15px;
+}
+
+.custom-button {
+  margin: 5%; /* Use percentage for responsive margin */
+}
+
+.addUserButton {
+  margin: 1%;
+  padding: 10px 15px;
+  cursor: pointer;
+  background: linear-gradient(to bottom right, hsl(218, 41%, 15%), hsl(218, 41%, 35%));
+  color: white;
+  border: none;
+  border-radius: 3px;
+  transition: background-color 0.3s ease;
+}
+
+.addUserButton:hover {
+  background: linear-gradient(to bottom right, hsl(218, 34%, 27%), hsl(219, 34%, 55%));
+}
+.dialog-content{
+margin: 0 50% 2% 1%;
+}
+
+
+/* If you want to hide the border and background for the last row, you can add the following: */
+.tableData tr:last-child td {
+  border-bottom: none;
+}
+
+/* Adjustments for small screens (optional) */
+@media only screen and (max-width: 1000px) {
+  .container1 {
+    margin-top: 30%; /* Adjust margin for smaller screens */
+  }
+
+  .addUserButton {
+    margin-bottom: 2%; /* Adjust margin for smaller screens */
+  }
+
+  .dialog-content {
+    margin-left: 0; /* Adjust margin for smaller screens */
+  }
+
+  .allData,
+  .specificData {
+    overflow-x: auto; /* Add horizontal scrolling for smaller screens */
+  }
+
+  app-header{
+    margin: 40%;
+  }
+}
+
+.taskcss {
+  max-width: 30ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.tableGrid {
+  width: 100%;
+  border-collapse: collapse;
+}
