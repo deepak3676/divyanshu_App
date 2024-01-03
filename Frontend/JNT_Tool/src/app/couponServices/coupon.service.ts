@@ -16,7 +16,7 @@ export class CouponService {
 
       if (supabaseUserId) {
         data.SupabaseUserId = supabaseUserId;
-        const response = await this._http.post('http://165.22.223.179:8080/api/Coupon/Create', data).toPromise();
+        const response = await this._http.post('https://localhost:44318/api/Coupon/Create', data).toPromise();
         return new Observable(observer => {
           observer.next(response);
           observer.complete();
@@ -31,7 +31,7 @@ export class CouponService {
   }
 
   updateCoupon(data: any): Observable<any> {
-    return this._http.put(`http://165.22.223.179:8080/api/Coupon/Update`, data);
+    return this._http.put(`https://localhost:44318/api/Coupon/Update`, data);
   }
 
   getCouponsListForUser(pageSize: number, pageIndex: number): Observable<any> { 
@@ -40,7 +40,7 @@ export class CouponService {
         const supabaseUserId = userDetails?.id;
   
         if (supabaseUserId) {
-          const url = `http://165.22.223.179:8080/api/Coupon/${supabaseUserId}?pageSize=${pageSize}&pageIndex=${pageIndex}`;
+          const url = `https://localhost:44318/api/Coupon/${supabaseUserId}?pageSize=${pageSize}&pageIndex=${pageIndex}`;
           this._http.get(url).subscribe(response => {
             observer.next(response);
             observer.complete();
@@ -56,10 +56,10 @@ export class CouponService {
   }
   
   GetCouponById(id: number): Observable<any> {
-    return this._http.get(`http://165.22.223.179:8080/api/Coupon/GetBy/${id}`);
+    return this._http.get(`https://localhost:44318/api/Coupon/GetBy/${id}`);
   }
 
   deleteCoupons(id: number): Observable<any> {
-    return this._http.delete(`http://165.22.223.179:8080/api/Coupon/Delete/${id}`);
+    return this._http.delete(`https://localhost:44318/api/Coupon/Delete/${id}`);
   }
 }
